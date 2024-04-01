@@ -1,11 +1,16 @@
 return {
-    "rest-nvim/rest.nvim",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-    event = "BufEnter *.http",
-    ft = "http",
-    config = function()
-        require('rest-nvim').setup({
-            env_file = ".env",
-        })
-    end
+    {
+        "vhyrro/luarocks.nvim",
+        config = function()
+            require("luarocks").setup({})
+        end,
+    },
+    {
+        "rest-nvim/rest.nvim",
+        ft = "http",
+        dependencies = { "luarocks.nvim" },
+        config = function()
+            require("rest-nvim").setup()
+        end,
+    }
 }
